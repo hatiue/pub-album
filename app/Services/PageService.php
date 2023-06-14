@@ -44,9 +44,37 @@ class PageService
         return $userName;
     }
 
+    public function search($input)
+    {
+        // IDかユーザー名で検索してIDを返す、検索は名前優先
+        // 1人限定（いずれ検索結果一覧ページ追加）
+        $inputWord = $input;
+        $nameSearch = User::where('name', $inputWord)->get();
+        $userId = $nameSearch->value('id');
+
+        if($userId == false) {
+            $idSearch = User::where('id', $inputWord)->get();
+            $userId = $idSearch->value('id');
+        }
+
+        return $userId;
+    }
+
+    public function randomValidUsers()
+    {
+        // imgurlとcomposition合計18個のうち1つでも空白でなければ（デフォルトでなければ）有効とみなす
+        $collection = Bind::whereNotNull('imgurl')->orWhereNotNull('composition')->pluck('user_id');
+        $uniqueId = $collection->unique();
+        $randomId = $uniqueId->random(1)->toArray(); // toArray()を追加
+        return $randomId[0];
+
+        //$collection = Bind::whereNotNull('imgurl')->orWhereNotNull('composition')->select('user_id');
+        //$array = $collection->all();
+    }
+
     public function updateCard(UpdateRequest $request)
     {
-        // Updateコントローラからコピペしたが、処理はあっちのままでいいかも
+        // Updateコントローラからコピペしたが、処理はあちらで行っている
         $userId = auth()->id();
         $position = $request->position();
         $card = Bind::where('user_id', $userId)->where('position', $position)->firstOrFail();

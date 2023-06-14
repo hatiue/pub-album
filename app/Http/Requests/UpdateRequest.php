@@ -51,4 +51,9 @@ class UpdateRequest extends FormRequest
         return $this->file('image');
     }
 
+    public function searchUser()
+    {
+        return $this->input('searchWord');
+    }
+
 }

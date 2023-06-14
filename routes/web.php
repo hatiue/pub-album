@@ -25,10 +25,12 @@ Route::get('/dashboard', function () {
 
 Route::get('/pub-album', [HomeController::class, 'home'])
     ->name('home');
-// 閲覧用
-Route::get('/pub-album/page/user-{userId}', [HomeController::class, 'page'])
-    ->name('page')
-    ->where('userId', '[0-9]+');
+// 閲覧用、ID固定用
+Route::get('/pub-album/page/search', [HomeController::class, 'page'])
+    ->name('page');
+// 閲覧用、ランダム版 // ページからURL用のuserIdを取得したい
+Route::get('/pub-album/page/random-view', [HomeController::class, 'randPage'])
+    ->name('randPage');
 // 本人用
 Route::get('/pub-album/mypage/user-{userId}', [UpdateController::class, 'mypage'])
     ->middleware('auth')

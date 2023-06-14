@@ -68,9 +68,9 @@ class UpdateController extends Controller
         $position = $request->position();
         $card = Bind::where('user_id', $userId)->where('position', $position)->firstOrFail();
         $image = $request->image();
-        Storage::putFile('public/images', $image); // The file "public/images" does not exist
-        $imgurl = $image->hashName(); // ここと
-        $card->imgurl = $imgurl; // この2行合ってる？
+        Storage::putFile('public/images', $image); // The file "public/images" does not exist : <input>にname属性忘れでエラーだった
+        $imgurl = $image->hashName();
+        $card->imgurl = $imgurl;
         $card->save();
         return redirect(route('card', ['userId' => $userId, 'position' => $position]), 307)
             ->with('update.success', '画像を更新しました');

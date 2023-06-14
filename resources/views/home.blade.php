@@ -25,12 +25,17 @@
         <div class="col-lg-12 col-md-8 mx-auto">
             <p class="lead text-muted">他のユーザーのページを見ることもできます。</p>
             <h2 class="fw-light">アルバムを見る</h2>
-              <a href="{{ route('page', ['userId' => 1]) }}" class="btn btn-primary my-2">ランダムに見る（未）</a>
-              <p>有効なページを作成したユーザーIDを抽出してランダムに飛ばす予定</p>
-              <p>現在はユーザーID1固定（シーディングで作成されるユーザー）</p>
-              <p>URLのIDを触れば利用登録後に作成ボタンを押したユーザーのページへ直接飛べます</p>              
-              <input type="text" placeholder="ユーザーIDを入力"><button type="button">仮</button>
-              <p>ユーザーIDか名前を指定してページを表示　未実装</p>
+              <a href="{{ route('randPage') }}" class="btn btn-primary my-2">誰かのページを見る</a>
+              <p>↑有効なページを作成したユーザーIDを抽出してランダムに飛ぶ</p>
+              <p>↑URLにユーザーIDを反映したい：未</p>
+              <form action="{{ route('page') }}" method="get">
+                <!-- oldはバリデーションエラー時のみ？ -->
+                <input type="text" id="search" name="searchWord" placeholder="ユーザーのIDか名前を入力">
+                <button type="submit" id="search" class="btn btn-outline-info mx-2">検索する</button>
+                <p style="color: red">{{ session('searchMessage') }}</p>
+                <p>↑IDかユーザー名を指定してページを表示</p>
+                <p>↑※名前は現在完全一致のみ、ランダム時と違い有効なページでなくても表示される</p>
+              </form>
             </p>
         </div>
       </div>
