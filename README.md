@@ -34,7 +34,7 @@
 >    composer install --ignore-platform-reqs
 #### ※コマンドのバックスラッシュを表示させるために、少し手を加えています。正確な表現はリンク先をご確認ください。
 
-### sailを起動した後に、**空のデータベース**「binds」が作成されているはずです。確認は下記コマンドで可能です。
+#### sailを起動した後に、**空のデータベース**「binds」が作成されているはずです。確認は下記コマンドで可能です。
 - cd pub-album
 - ./vendor/bin/sail up -d
 - ./vendor/bin/sail mysql
@@ -49,6 +49,7 @@
 下記のコマンドを順に実行
 - cd pub-album
 - ./vendor/bin/sail up -d // アプリケーションコンテナをデーモン起動する
+- ./vendor/bin/sail artisan storage:link // 画像保存用ディレクトリのシンボリックリンクを作成
 - ./vendor/bin/sail artisan migrate // テーブルを作成、初回起動時のみ
 - ./vendor/bin/sail artisan db:seed // ダミーデータを作成　id1のユーザーと、そのユーザーのページを作成※恐らくエラーが発生しますが、データは作成されています
 
@@ -69,7 +70,7 @@ http://localhost/pub-album
 - ./vendor/bin/sail down // アプリケーションコンテナを停止
 
 ## エイリアスの設定（オプション）
-「./vendor/bin/sail」を「sail」に省略する設定(Windows)
+「./vendor/bin/sail」を「sail」に省略する設定
 - vi ~/.profile
-- alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'　左記を入力して保存
+- alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'　// 左記を入力して保存
 - source ~/.profile
