@@ -60,6 +60,28 @@ class PageService
         return $userId;
     }
 
+    public function searchName($input)
+    {
+        // ユーザー名での検索結果を全て取得する
+        if($input != null) {
+            $word = "%" . $input . "%"; // エスケープについては未 addcslaches()等参照
+            $nameSearch = User::where('name', 'LIKE', $word)->select('id', 'name')->get();
+            $nameSearchResults = $nameSearch->toArray();
+            return $nameSearchResults;
+        }
+        return null;
+    }
+    public function searchId($input)
+    {
+        // IDでの検索結果を取得する　完全一致のみ
+        if($input != null) {
+            $idSearch = User::where('id', $input)->select('id', 'name')->get();
+            $idSearchResults = $idSearch->toArray();
+            return $idSearchResults;
+        }
+        return null;
+    }
+
     public function randomValidUsers()
     {
         // imgurlとcomposition合計18個のうち1つでも空白でなければ（デフォルトでなければ）有効とみなす

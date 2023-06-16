@@ -23,7 +23,6 @@ class UpdateController extends Controller
 
     public function card(UpdateRequest $request)
     {
-        // p86のやつ、値を取得するメソッド？　ならmypage()でいいと思う
         $userId = auth()->id();
         $position = $request->position(); // 編集する行を取得
         $card = Bind::where('user_id', $userId)->where('position', $position)->firstOrFail();
@@ -55,25 +54,31 @@ class UpdateController extends Controller
     {
         $userId = auth()->id();
         $position = $request->position();
-        $card = Bind::where('user_id', $userId)->where('position', $position)->firstOrFail();
-        $card->composition = $request->composition();
-        $card->save();
-        return redirect(route('card', ['userId' => $userId, 'position' => $position]), 307)
-            ->with('update.success', '本文を更新しました');
+        if($request->composition()) {
+            $card = Bind::where('user_id', $userId)->where('position', $position)->firstOrFail();
+            $card->composition = $request->composition();
+            $card->save();
+            return redirect(route('card', ['userId' => $userId, 'position' => $position]), 307)
+                ->with('update.success', '本文を更新しました');
+        }
+        return redirect(route('card', ['userId' => $userId, 'position' => $position]), 307);
     }
 
     public function updateImage(UpdateRequest $request)
     {
         $userId = auth()->id();
         $position = $request->position();
-        $card = Bind::where('user_id', $userId)->where('position', $position)->firstOrFail();
-        $image = $request->image();
-        Storage::putFile('public/images', $image); // The file "public/images" does not exist : <input>にname属性忘れでエラーだった
-        $imgurl = $image->hashName();
-        $card->imgurl = $imgurl;
-        $card->save();
-        return redirect(route('card', ['userId' => $userId, 'position' => $position]), 307)
-            ->with('update.success', '画像を更新しました');
+        if($request->image()) {
+            $card = Bind::where('user_id', $userId)->where('position', $position)->firstOrFail();
+            $image = $request->image();
+            Storage::putFile('public/images', $image); // The file "public/images" does not exist : <input>にname属性忘れでエラーだった
+            $imgurl = $image->hashName();
+            $card->imgurl = $imgurl;
+            $card->save();
+            return redirect(route('card', ['userId' => $userId, 'position' => $position]), 307)
+                ->with('update.success', '画像を更新しました');
+        }
+        return redirect(route('card', ['userId' => $userId, 'position' => $position]), 307);
     }
 
     public function delete(UpdateRequest $request)

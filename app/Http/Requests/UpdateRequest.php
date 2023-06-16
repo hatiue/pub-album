@@ -11,7 +11,7 @@ class UpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true; // trueが誰でもおｋ？
+        return true;
     }
 
     /**
@@ -21,9 +21,9 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        // 画像のファイルサイズについて：iphone8で取った写真がjpegで1.5MB～3.2MBなので2048KBじゃ少ないのかも
-        // ゲームのスクショなんかもpngで1.5～4MB超くらい
-        // ただしPCのスクショやペイント製画像は1MBもない 通帳のカラースキャンが900KBくらい
+        // 画像のファイルサイズについて：iphone8で取った写真がjpegで1.5MB～3.2MBなので2048KBじゃ少ないかも
+        // スマホゲームのスクショはpngで1.5～4MB超
+        // ただしPCからのスクショやペイント製画像は1MBもない 通帳のカラースキャンが900KBくらい
         return [
             'composition' => 'max:128',
             'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048' 

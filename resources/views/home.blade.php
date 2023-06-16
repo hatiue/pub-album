@@ -28,13 +28,11 @@
               <a href="{{ route('randPage') }}" class="btn btn-primary my-2">誰かのページを見る</a>
               <p>↑有効なページを作成したユーザーIDを抽出してランダムに飛ぶ</p>
               <p>↑URLにユーザーIDを反映したい：未</p>
-              <form action="{{ route('page') }}" method="get">
-                <!-- oldはバリデーションエラー時のみ？ -->
+              <form action="{{ route('search') }}" method="get">
                 <input type="text" id="search" name="searchWord" placeholder="ユーザーのIDか名前を入力">
                 <button type="submit" id="search" class="btn btn-outline-info mx-2">検索する</button>
                 <p style="color: red">{{ session('searchMessage') }}</p>
-                <p>↑IDかユーザー名を指定してページを表示</p>
-                <p>↑※名前は現在完全一致のみ、ランダム時と違い有効なページでなくても表示される</p>
+                <p>※エスケープ未対応　addcslashes()</p>
               </form>
             </p>
         </div>

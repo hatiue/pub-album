@@ -17,17 +17,30 @@ class HomeController extends Controller
         return view('home');
     }
 
-    // 閲覧用ページ、検索用
-    public function page(PageService $pageService, UpdateRequest $request)
+    // 閲覧用ページ、indexからのリンク
+    public function page($userId, PageService $pageService)
     {
-        $userId = $pageService->search($request->searchUser()); 
+        $id = $userId ; // ビュー・ルートから受け取った 
 
-        if(is_numeric($userId)) {
-            $rows = $pageService->getCards($userId); // rowsにはEloquentコレクションを配列化したのが入ってる
-            $userName = $pageService->getUserName($userId);
-            return view('cards_read')->with('rows', $rows)->with('userName', $userName);
+        $rows = $pageService->getCards($id); // rowsにはEloquentコレクションを配列化したのが入ってる
+        $userName = $pageService->getUserName($id);
+        return view('cards_read')->with('rows', $rows)->with('userName', $userName);
+    }
+
+    // 検索結果一覧を表示するページ
+    public function searchResult(PageService $pageService, UpdateRequest $request)
+    {
+        if($request->searchUser()) {
+            $users = $pageService->searchName($request->searchUser());
+            $id = $pageService->searchId($request->searchUser());
+            if($users || $id) {
+                //return view('index')->with('users', $users)->with('id', $id);
+                return view('index')->with(['users' => $users, 'id' => $id]);
+            } else {
+                return back()->with('searchMessage', '該当するユーザーはいませんでした…');
+            }
         } else {
-            return back()->with('searchMessage', '該当するユーザーはいませんでした…');
+            return back();
         }
     }
 
@@ -76,10 +89,20 @@ class HomeController extends Controller
     }
 
     // testビューで何かを試すとき用のメソッド
-    public function test(PageService $pageService)
+    public function test(PageService $pageService, UpdateRequest $request)
     {
-        $ids = $pageService->search(1);
-        // $ids = [1,2];
-        var_dump($ids);
+        $users = $pageService->searchName('');
+        $id = $pageService->searchId('1');
+        if($users || $id) {
+            echo "どちらかtrue";
+            echo "users".PHP_EOL;
+            var_dump($users);
+            echo "id".PHP_EOL;
+            var_dump($id);
+        } else {
+            echo "どちらもfalse";
+        }
+
+
     }
 }
