@@ -20,7 +20,7 @@
         }
         $position = $rows[$i]['position']
       ?>
-        <x-album.card_update user="{{ auth()->id() }}" imgurl="{{ $imgurl }}" composition="{{ $composition }}" position="{{ $position }}"></x-album.card_update>
+        <x-album.card_update user="{{ auth()->id() }}" imgurl="{{ $imgurl }}" composition="{{ $composition }}" position="{{ $position }}" i="{{ $i }}"></x-album.card_update>
       @endfor
     </div>
   </div>

@@ -1,6 +1,6 @@
 <header>
     <div class="collapse bg-dark" id="navbarHeader">
-        <!-- collapse:bootstrapのJSプラグイン、折り畳み機能 使わないが便利そう -->
+        <!-- collapse:bootstrapのJSプラグイン、折り畳み機能 -->
       <div class="container">
         <div class="row">
           <div class="col-sm-8 col-md-7 py-4">
@@ -11,7 +11,6 @@
             <h4 class="text-white">Contact</h4>
             <ul class="list-unstyled">
               <li><a href="#" class="text-white">Twitter（未）</a></li>
-              <li><a href="#" class="text-white">Like on Facebook（無）</a></li>
               <li><a href="#" class="text-white">Email me（未）</a></li>
             </ul>
           </div>
@@ -26,10 +25,12 @@
           <strong>pub-album</strong>
         </a>
         @auth
-        <form method="post" action="{{ route('logout') }}">
-          @csrf
-          <button type="submit">ログアウト</button>
-        </form>
+        <div class="">
+          <form method="post" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="btn btn-outline-light btn-sm">ログアウト</button>
+          </form>
+        </div>
         @endauth
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

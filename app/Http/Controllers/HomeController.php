@@ -91,18 +91,6 @@ class HomeController extends Controller
     // testビューで何かを試すとき用のメソッド
     public function test(PageService $pageService, UpdateRequest $request)
     {
-        $users = $pageService->searchName('');
-        $id = $pageService->searchId('1');
-        if($users || $id) {
-            echo "どちらかtrue";
-            echo "users".PHP_EOL;
-            var_dump($users);
-            echo "id".PHP_EOL;
-            var_dump($id);
-        } else {
-            echo "どちらもfalse";
-        }
-
-
+        return view('test');
     }
 }

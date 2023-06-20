@@ -15,12 +15,12 @@
         </div>
             <form id="imgUpdate" action={{ route('updateImage', ['userId' => auth()->id(), 'position' => $card->position]) }} method="post" enctype="multipart/form-data">
             @csrf
-            <p style="color: red">注意：画像と本文の更新ボタンは別々なので、<br>　　　両方編集したい時は1つずつお願いします。</p>
             <div class="d-flex justify-content-center">
               <input id="imgUpdate" type="file" name="image">
             </div>
             <div class="d-flex justify-content-end align-items-center me-3"><!-- 位置 -->
-              <button id="imgUpdate" type="submit" class="btn btn-sm btn-outline-secondary">画像を更新</button>
+              <p style="color: red">注意：画像と本文の更新ボタンは別々なので、<br>　　　両方編集したい時は1つずつお願いします。</p>
+              <button id="imgUpdate" type="submit" class="btn btn-sm btn-outline-info">画像を更新</button>
             </div>
             
           </form>
@@ -32,7 +32,8 @@
                 </div>
                 <div class="d-flex justify-content-end align-items-center">
                     <input type="hidden" name="position" value="{{ $card->position }}">
-                    <button id="update" type="submit" class="btn btn-sm btn-outline-secondary">本文を更新</button>
+                    <p style="color: red">注意：画像と本文の更新ボタンは別々なので、<br>　　　両方編集したい時は1つずつお願いします。</p>
+                    <button id="update" type="submit" class="btn btn-sm btn-outline-info">本文を更新</button>
                 </div>
             </form>
               
