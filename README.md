@@ -1,13 +1,14 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 ## 内容
+
 <img width="50%" src="https://github.com/hatiue/SampleImages/blob/main/pub-album/pub01.JPG?raw=true">  
 アプリケーションをアルバムに例えて、利用登録したアカウント1つにつき、9枚分だけ編集できる1ページが与えられます。  
 ユーザーが複数人いるという前提で、共用のアルバムをつくろうという感じです。更新は画像だけ・本文だけでも構いません。  
 ※[Bootstrapのサンプル](https://getbootstrap.jp/docs/5.0/examples/)から、[Album](https://getbootstrap.jp/docs/5.0/examples/album/)を使用しました。  
-- アルバムのページ(ユーザー名と画像は生成されたものを使用しています)  
+アルバムのページ(ユーザー名と画像は生成されたものを使用しています)  
 <img width="50%" src="https://github.com/hatiue/SampleImages/blob/main/pub-album/pub02.jpg?raw=true">  
-- 検索機能の画面  
+検索機能の画面  
 <img width="50%" src="https://github.com/hatiue/SampleImages/blob/main/pub-album/pub03.JPG?raw=true">  
 
 ## 1.インストール
