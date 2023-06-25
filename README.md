@@ -2,12 +2,13 @@
 
 ## 内容
 
-<img width="50%" src="https://github.com/hatiue/SampleImages/blob/main/pub-album/pub01.JPG?raw=true">  
+<img width="50%" src="https://github.com/hatiue/SampleImages/blob/main/pub-album/pub01.JPG?raw=true">  <br>
 アプリケーションをアルバムに例えて、利用登録したアカウント1つにつき、9枚分だけ編集できる1ページが与えられます。  
 ユーザーが複数人いるという前提で、共用のアルバムをつくろうという感じです。更新は画像だけ・本文だけでも構いません。  
 ※[Bootstrapのサンプル](https://getbootstrap.jp/docs/5.0/examples/)から、[Album](https://getbootstrap.jp/docs/5.0/examples/album/)を使用しました。  
 アルバムのページ(ユーザー名と画像は生成されたものを使用しています)  
-<img width="50%" src="https://github.com/hatiue/SampleImages/blob/main/pub-album/pub02.jpg?raw=true">  
+<img width="50%" src="https://github.com/hatiue/SampleImages/blob/main/pub-album/pub04.jpg?raw=true">  
+※写真素材は[Pro.foto](https://pro-foto.jp/)様からお借りしました。  
 検索機能の画面  
 <img width="50%" src="https://github.com/hatiue/SampleImages/blob/main/pub-album/pub03.JPG?raw=true">  
 
