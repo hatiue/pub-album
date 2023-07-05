@@ -4,15 +4,10 @@ namespace App\Services;
 
 use App\Models\Bind;
 use App\Models\User;
-use App\Http\Requests\UpdateRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-
 
 class PageService
 {
-    
+
     public function getCards(int $userId)
     {
         // 9行分取得
@@ -44,10 +39,10 @@ class PageService
         return $userName;
     }
 
+    /* 下記searchName()とsearchId()を作成したため不要に
     public function search($input)
     {
-        // IDかユーザー名で検索してIDを返す、検索は名前優先
-        // 1人限定（いずれ検索結果一覧ページ追加）
+        // IDかユーザー名で検索してIDを返す、検索は名前優先で1件のみ取得
         $inputWord = $input;
         $nameSearch = User::where('name', $inputWord)->get();
         $userId = $nameSearch->value('id');
@@ -59,6 +54,7 @@ class PageService
 
         return $userId;
     }
+    */
 
     public function searchName($input)
     {
@@ -71,6 +67,7 @@ class PageService
         }
         return null;
     }
+
     public function searchId($input)
     {
         // IDでの検索結果を取得する　完全一致のみ
@@ -89,23 +86,6 @@ class PageService
         $uniqueId = $collection->unique();
         $randomId = $uniqueId->random(1)->toArray(); // toArray()を追加
         return $randomId[0];
-
-        //$collection = Bind::whereNotNull('imgurl')->orWhereNotNull('composition')->select('user_id');
-        //$array = $collection->all();
     }
 
-    public function updateCard(UpdateRequest $request)
-    {
-        // Updateコントローラからコピペしたが、処理はあちらで行っている
-        $userId = auth()->id();
-        $position = $request->position();
-        $card = Bind::where('user_id', $userId)->where('position', $position)->firstOrFail();
-        // $card->imgurl =  // 画像関連未着手
-        $card->composition = $request->composition();
-        $card->save();
-        //return redirect()->route('card', ['userId' => $userId, 'position' => $position]) // getになる
-        //return back() // getになる
-        return redirect(route('card', ['userId' => $userId, 'position' => $position]), 307)
-            ->with('update.success', '更新しました');
-    }
 }

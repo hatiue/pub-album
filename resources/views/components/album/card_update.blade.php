@@ -2,7 +2,6 @@
     <div class="card shadow-sm">
       <div class="d-flex justify-content-center border border-dark m-1" style="height: 225px;">
         @if($imgurl !== "")
-          <!-- 画像がある場合は表示 -->
           <x-album.imageModal imgurl="{{ $imgurl }}" i="{{ $i }}"></x-album.imageModal>
         @else
           <!-- 画像が無い場合は代替のsvg製四角形を表示 -->

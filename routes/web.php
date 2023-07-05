@@ -29,7 +29,7 @@ Route::get('/pub-album', [HomeController::class, 'home'])
 Route::get('/pub-album/page/user-{userId}', [HomeController::class, 'page'])
     ->where('userId', '[0-9]+')
     ->name('page');
-// 閲覧用、ランダム版 // ページからURL用のuserIdを取得したい
+// 閲覧用、ランダム版
 Route::get('/pub-album/page/random-view', [HomeController::class, 'randPage'])
     ->name('randPage');
 // 検索結果表示ページ

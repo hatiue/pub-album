@@ -78,7 +78,12 @@ http://localhost/pub-album
 - ./vendor/bin/sail down // アプリケーションコンテナを停止
 
 ## エイリアスの設定（オプション）
+
 「./vendor/bin/sail」を「sail」に省略する設定
 - vi ~/.profile
 - alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'　// 左記を入力して保存
 - source ~/.profile
+
+## 備考
+
+未使用ファイル（Bladeテンプレート等）も一緒にpushしています。

@@ -21,12 +21,11 @@ class UpdateRequest extends FormRequest
      */
     public function rules(): array
     {
-        // 画像のファイルサイズについて：iphone8で取った写真がjpegで1.5MB～3.2MBなので2048KBじゃ少ないかも
+        // iphone8で取った写真がjpegで1.5MB～3.2MB
         // スマホゲームのスクショはpngで1.5～4MB超
-        // ただしPCからのスクショやペイント製画像は1MBもない 通帳のカラースキャンが900KBくらい
         return [
-            'composition' => 'max:128',
-            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048' 
+            'composition' => 'max:128|nullable',
+            'image' => 'image|mimes:jpeg,jpg,png,gif|max:2048' // 一時4096にして戻した
         ];
     }
 
@@ -35,14 +34,14 @@ class UpdateRequest extends FormRequest
         return $this->input('imgurl');
     }
 
-    public function composition(): string
+    public function composition(): ?string
     {
         return $this->input('composition');
     }
 
     public function position(): int
     {
-        //return $this->input('position'); // hiddenで送ってるから？input()ではNULLが返ってくる
+        // return $this->input('position'); // NULLが返ってくる
         return $this->position;
     }
 

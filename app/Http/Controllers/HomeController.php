@@ -4,10 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Bind;
-use App\Models\User;
 use App\Http\Requests\UpdateRequest;
 use App\Services\PageService;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
@@ -22,7 +20,7 @@ class HomeController extends Controller
     {
         $id = $userId ; // ビュー・ルートから受け取った 
 
-        $rows = $pageService->getCards($id); // rowsにはEloquentコレクションを配列化したのが入ってる
+        $rows = $pageService->getCards($id); // rowsにはEloquentコレクションを配列化したものが入る
         $userName = $pageService->getUserName($id);
         return view('cards_read')->with('rows', $rows)->with('userName', $userName);
     }
@@ -48,12 +46,10 @@ class HomeController extends Controller
     public function randPage(PageService $pageService)
     {
         $getUserId = $pageService->randomValidUsers();
-        $rows = $pageService->getCards($getUserId); // rowsにはEloquentコレクションを配列化したのが入ってる
+        $rows = $pageService->getCards($getUserId);
         $userName = $pageService->getUserName($getUserId);
         return view('cards_read')->with('rows', $rows)->with('userName', $userName);
     }
-
-
 
     public function getUserData($userId)
     {
@@ -63,7 +59,6 @@ class HomeController extends Controller
 
     public function getComposition($userId, $position)
     {
-        // ToDo:サービスクラスからの取得に切り替えて動作を確認
         $row = Bind::where('user_id', $userId)->where('position', $position)->firstOrFail();
         $composition = $row->composition;
         return $composition;
@@ -88,7 +83,7 @@ class HomeController extends Controller
         }
     }
 
-    // testビューで何かを試すとき用のメソッド
+    // testビューで何かを試すとき用
     public function test(PageService $pageService, UpdateRequest $request)
     {
         return view('test');

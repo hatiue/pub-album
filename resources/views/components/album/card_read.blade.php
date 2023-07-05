@@ -9,7 +9,7 @@
         @endif
       </div>
         <div class="card-body">
-          <p class="card-text">{{ $composition }}</p><!-- 文字サイズ少し下げたい -->
+          <p class="card-text">{{ $composition }}</p>
           <div class="d-flex justify-content-between align-items-center">
           </div>
         </div>
